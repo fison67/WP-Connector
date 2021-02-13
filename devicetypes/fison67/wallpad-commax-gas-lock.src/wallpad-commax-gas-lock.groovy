@@ -55,7 +55,7 @@ def setEventData(data){
         def subDevice = getSubDeviceById(target.subUuid)
         if(subDevice){
         	if(subDevice.sort == "gasLock"){
-    			sendEvent(name: "switch", value: target.value == "lock" ? "locked" : "unlocked")
+    			sendEvent(name: "lock", value: target.value == "lock" ? "locked" : "unlocked")
             }
         }
     }
