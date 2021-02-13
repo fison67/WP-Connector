@@ -95,7 +95,7 @@ def makeHeatingSetPointCommand(value){
          "sort": data.sort,
          "subUuid": data.subUuid,
          "type": data.type,
-         "value": value
+         "value": "${value}"
       ]
     ]
 }
