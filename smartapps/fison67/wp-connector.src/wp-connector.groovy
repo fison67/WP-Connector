@@ -201,6 +201,10 @@ def processAddCommaxDevice(data){
     	if(commaxDevice == "gasLock"){
         	dth = "Wallpad Commax Gas Lock"
         }
+    }else if(rootDevice == "elevator"){
+    	dth = "Wallpad Commax Elevator"
+    }else if(rootDevice == "parking"){
+    	dth = "Wallpad Commax Parking Location"
     }
     
     if(!_existDevice(dni)){
