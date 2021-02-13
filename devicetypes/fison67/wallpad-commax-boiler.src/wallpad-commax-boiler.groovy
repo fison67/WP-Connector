@@ -101,7 +101,7 @@ def makeHeatingSetPointCommand(value){
 }
 
 def makeModeCommand(value){
-	def data = getSubDevice("thermostatSetpoint")
+	def data = getSubDevice("thermostatMode")
 	return [
       "rootUuid": state.id,
       "subDevice": [
