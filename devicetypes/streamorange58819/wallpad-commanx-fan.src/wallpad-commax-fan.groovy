@@ -30,9 +30,9 @@
 import groovy.json.JsonSlurper
 
 metadata {
-	definition (name: "Wallpad Commax Fan", namespace: "streamorange58819", author: "fison67", mnmn: "fison67", vid: "ce63cfcf-6aed-3fe7-8177-64571ac94642") {
+	definition (name: "Wallpad Commax Fan", namespace: "streamorange58819", author: "fison67", mnmn: "fison67", vid: "1c3d902d-ff58-35e8-ad30-57c75d0c4ced") {
         capability "Switch"
-        capability "streamorange58819.fanspeed"
+        capability "streamorange58819.fanspeedz"
 	}
 }
 
@@ -46,7 +46,7 @@ def setInfo(data) {
        if(subDevice.sort == "switchBinary"){
     		sendEvent(name: "switch", value: subDevice.value)
        }else if(subDevice.sort == "fanSpeed"){
-    		sendEvent(name: "fanspeed", value: subDevice.value)
+    		sendEvent(name: "fanspeedz", value: subDevice.value)
        }
     }
 }
@@ -58,21 +58,24 @@ def setEventData(data){
         	if(subDevice.sort == "switchBinary"){
     			sendEvent(name: "switch", value: target.value)
             }else if(subDevice.sort == "fanSpeed"){
-    			sendEvent(name: "fanspeed", value: target.value)
+    			sendEvent(name: "fanspeedz", value: target.value)
             }
         }
     }
 }
 
 def on(){
+	log.debug "on"
 	control(makeSwitchCommand("on"))
 }
 
 def off(){
+	log.debug "off"
 	control(makeSwitchCommand("off"))
 }
 
 def low(){
+	log.debug "low"
 	control(makeSwitchCommand("low"))
 }
 
@@ -84,7 +87,7 @@ def high(){
 	control(makeFanSpeedCommand("high"))
 }
 
-def setFanSpeed(speed){
+def setFanSpeedz(speed){
 	control(makeFanSpeedCommand(speed))
 }
 
