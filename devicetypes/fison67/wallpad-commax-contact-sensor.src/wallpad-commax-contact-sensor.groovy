@@ -1,5 +1,5 @@
 /**
- *  Wallpad Commax Contact Sensor (v.0.0.1)
+ *  Wallpad Commax Contact Sensor (v.0.0.2)
  *
  * MIT License
  *
@@ -30,8 +30,8 @@
 import groovy.json.JsonSlurper
 
 metadata {
-	definition (name: "Wallpad Commax Contact Sensor", namespace: "fison67", author: "fison67", ocfDeviceType: "x.com.st.d.sensor.contact") {
-        capability "Contact Sensor"
+	definition (name: "Wallpad Commax Contact Sensor", namespace: "fison67", author: "fison67", ocfDeviceType: "x.com.st.d.sensor.motion") {
+        capability "Motion Sensor"
 	}
 }
 
@@ -43,7 +43,7 @@ def setInfo(data) {
     state.data = data.toString()
     for (subDevice in data.data.subDevice) {
        if(subDevice.sort == "generalPurpose"){
-    		sendEvent(name: "contact", value: subDevice.value == "undetected" ? "closed" : "open")
+    		sendEvent(name: "contact", value: subDevice.value == "undetected" ? "inactive" : "active")
        }
     }
 }
@@ -53,7 +53,7 @@ def setEventData(data){
         def subDevice = getSubDeviceById(target.subUuid)
         if(subDevice){
         	if(subDevice.sort == "generalPurpose"){
-    			sendEvent(name: "contact", value: target.value == "undetected" ? "closed" : "open")
+    			sendEvent(name: "contact", value: target.value == "undetected" ? "inactive" : "active")
             }
         }
     }
